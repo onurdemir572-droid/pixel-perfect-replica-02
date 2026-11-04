@@ -6,6 +6,11 @@ import {
   ArrowUp, Coins, Percent, AlertTriangle, Minus, Package, Target, ArrowRight, Calculator,
   BrickWall, Layers, Square, Package2,
 } from "lucide-react";
+import cimento from "@/assets/p-cimento.png";
+import bims from "@/assets/p-bims.png";
+import alci from "@/assets/p-alci.png";
+import demir from "@/assets/p-demir.png";
+import tugla from "@/assets/p-tugla.png";
 import {
   ComposedChart, Line, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
 } from "recharts";
@@ -30,7 +35,7 @@ const chartData = [
   { m: "Tem", s: 335, c: 255, k: 80 },
   { m: "Ağu", s: 425, c: 310, k: 115 },
   { m: "Eyl", s: 470, c: 360, k: 140 },
-  { m: "Eki", s: 500, c: 380, k: 0 },
+  { m: "Eki", s: 500, c: 380, k: null as any },
 ];
 
 const tl = (n: number) => "₺ " + n.toLocaleString("tr-TR");
@@ -47,8 +52,8 @@ function Card({ className = "", children }: { className?: string; children: Reac
 
 function Dropdown({ icon: I, label }: { icon: any; label: string }) {
   return (
-    <button className="flex h-10 items-center gap-2 rounded-lg border bg-card px-4 text-sm font-medium text-ink hover:bg-muted">
-      <I className="h-4 w-4" /> <span className="mr-4">{label}</span> <ChevronDown className="h-4 w-4" />
+    <button className="flex h-10 items-center gap-2 whitespace-nowrap rounded-lg border bg-card px-4 text-sm font-medium text-ink hover:bg-muted">
+      <I className="h-4 w-4" /> <span className="mr-3">{label}</span> <ChevronDown className="h-4 w-4" />
     </button>
   );
 }
@@ -88,10 +93,10 @@ function Index() {
     <div className="min-h-screen bg-page">
       {/* Top bar */}
       <header className="flex h-[52px] items-center justify-between border-b bg-card px-10">
-        <div className="flex h-10 w-[435px] items-center gap-3 rounded-lg border px-4 text-sm text-muted-foreground">
+        <div className="flex h-10 w-[435px] items-center gap-3 bg-card rounded-lg border px-4 text-sm text-muted-foreground">
           <Search className="h-4 w-4 text-ink" />
-          <input className="flex-1 bg-transparent outline-none placeholder:text-muted-foreground" placeholder="Ürün, cari, fatura, sipariş ara..." />
-          <span className="mr-auto">(Ctrl + K)</span>
+          <input className="w-[200px] bg-transparent outline-none placeholder:text-muted-foreground" placeholder="Ürün, cari, fatura, sipariş ara..." />
+          <span>(Ctrl + K)</span>
         </div>
         <div className="flex items-center gap-8">
           <div className="relative"><Bell className="h-5 w-5" /><span className="absolute -right-0.5 -top-0.5 h-2 w-2 rounded-full bg-bad" /></div>
@@ -108,17 +113,17 @@ function Index() {
         <div className="flex items-center gap-4 text-sm">
           <a className="font-medium text-brand">Raporlar</a><ChevronRight className="h-4 w-4 text-muted-foreground" /><span className="text-muted-foreground">Maliyet Analizleri</span>
         </div>
-        <div className="mt-2 flex items-start justify-between">
+        <div className="mt-2 flex items-start justify-between gap-4">
           <div>
             <h1 className="text-[32px] font-bold leading-tight tracking-tight">Maliyet Analizleri</h1>
-            <p className="text-[15px] text-muted-foreground">Ürün maliyetleri, kârlılık ve maliyet değişimlerini analiz edin, hızlı karar verin.</p>
+            <p className="whitespace-nowrap text-[15px] text-muted-foreground">Ürün maliyetleri, kârlılık ve maliyet değişimlerini analiz edin, hızlı karar verin.</p>
           </div>
-          <div className="mt-2 flex gap-3">
+          <div className="mt-2 flex shrink-0 gap-3">
             <Dropdown icon={Calendar} label="Son 30 Gün" />
             <Dropdown icon={CircleDollarSign} label="TRY" />
             <Dropdown icon={Box} label="Tüm Depolar" />
-            <button className="flex h-10 items-center gap-2 rounded-lg border border-brand bg-card px-7 text-sm font-semibold text-brand hover:bg-brand-soft"><Filter className="h-4 w-4" />Filtreler</button>
-            <button className="flex h-10 items-center gap-2 rounded-lg bg-brand px-5 text-sm font-semibold text-primary-foreground hover:opacity-90"><Download className="h-4 w-4" />Dışa Aktar<ChevronDown className="h-4 w-4" /></button>
+            <button className="flex h-10 items-center gap-2 rounded-lg border border-brand bg-card whitespace-nowrap px-7 text-sm font-semibold text-brand hover:bg-brand-soft"><Filter className="h-4 w-4" />Filtreler</button>
+            <button className="flex h-10 items-center gap-2 whitespace-nowrap rounded-lg bg-brand px-5 text-sm font-semibold text-primary-foreground hover:opacity-90"><Download className="h-4 w-4" />Dışa Aktar<ChevronDown className="h-4 w-4" /></button>
           </div>
         </div>
 
@@ -178,7 +183,7 @@ function Index() {
                   <CartesianGrid vertical={false} stroke="var(--border)" />
                   <XAxis dataKey="m" axisLine={false} tickLine={false} tick={{ fontSize: 13, fill: "var(--ink)" }} />
                   <YAxis ticks={[0, 100, 200, 300, 400, 500, 600]} domain={[0, 600]} axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: "var(--ink)" }} tickFormatter={(v) => (v ? `${v} B` : "0")} />
-                  <Tooltip content={<ChartTip />} cursor={{ stroke: "var(--muted-foreground)", strokeDasharray: "4 4" }} defaultIndex={4} position={{ y: 0 }} offset={40} />
+                  <Tooltip content={<ChartTip />} cursor={{ stroke: "var(--muted-foreground)", strokeDasharray: "4 4" }} defaultIndex={4} position={{ y: 0 }} offset={20} allowEscapeViewBox={{ x: true }} />
                   <Bar dataKey="k" fill="var(--ok)" fillOpacity={0.35} barSize={58} radius={[3, 3, 0, 0]} />
                   <Line dataKey="c" stroke="var(--warn)" strokeWidth={2.5} dot={{ r: 4, fill: "var(--warn)" }} activeDot={{ r: 5 }} />
                   <Line dataKey="s" stroke="var(--brand)" strokeWidth={2.5} dot={{ r: 4, fill: "var(--brand)" }} activeDot={{ r: 6 }} />
@@ -216,12 +221,12 @@ function Index() {
               <thead><tr className="border-b text-xs font-medium"><th className="pb-2 text-left font-medium">Ürün</th><th className="text-right font-medium">Net Satış (₺)</th><th className="text-right font-medium">Satış Maliyeti (₺)</th><th className="text-right font-medium">Brüt Kâr (₺)</th><th className="pr-6 text-right font-medium">Marj</th></tr></thead>
               <tbody>
                 {[
-                  [Package2, "Çimento 50 kg", 420000, 315000, 105000, "%25,0"],
-                  [BrickWall, "Bims 20'lik", 180000, 129000, 51000, "%28,3"],
-                  [Square, "Alçı Plaka 12,5 mm", 96000, 68000, 28000, "%29,2"],
+                  [cimento, "Çimento 50 kg", 420000, 315000, 105000, "%25,0"],
+                  [bims, "Bims 20'lik", 180000, 129000, 51000, "%28,3"],
+                  [alci, "Alçı Plaka 12,5 mm", 96000, 68000, 28000, "%29,2"],
                 ].map(([I, n, a, b, c, m]: any) => (
                   <tr key={n} className="border-b last:border-0 hover:bg-muted/50">
-                    <td className="py-2"><span className="flex items-center gap-3"><span className="flex h-7 w-10 items-center justify-center rounded bg-amber-soft"><I className="h-5 w-5 text-warn" /></span>{n}</span></td>
+                    <td className="py-2"><span className="flex items-center gap-3"><img src={I} alt={n} className="h-8 w-10 object-contain" />{n}</span></td>
                     <td className="text-right">{tl(a)}</td><td className="text-right">{tl(b)}</td><td className="text-right">{tl(c)}</td>
                     <td className="text-right"><span className="inline-block rounded-md bg-ok-soft px-4 py-1 font-semibold text-ok">{m}</span></td>
                   </tr>
@@ -239,12 +244,12 @@ function Index() {
               <thead><tr className="border-b text-xs"><th className="pb-2 text-left font-medium">Ürün</th><th className="text-right font-medium">Önceki Maliyet</th><th className="text-right font-medium">Güncel Maliyet</th><th className="text-center font-medium">Değişim</th><th className="font-medium">Etki</th></tr></thead>
               <tbody>
                 {[
-                  [Package2, "Çimento 50 kg", "₺ 165,00", "₺ 185,00", "+%12,1"],
-                  [Layers, "Demir Ø12", "₺ 22,50", "₺ 24,70", "+%9,8"],
-                  [BrickWall, "Tuğla 19'luk", "₺ 8,90", "₺ 9,60", "+%7,9"],
+                  [cimento, "Çimento 50 kg", "₺ 165,00", "₺ 185,00", "+%12,1"],
+                  [demir, "Demir Ø12", "₺ 22,50", "₺ 24,70", "+%9,8"],
+                  [tugla, "Tuğla 19'luk", "₺ 8,90", "₺ 9,60", "+%7,9"],
                 ].map(([I, n, a, b, c]: any) => (
                   <tr key={n} className="border-b last:border-0 hover:bg-muted/50">
-                    <td className="py-2"><span className="flex items-center gap-3"><span className="flex h-7 w-10 items-center justify-center rounded bg-bad-soft"><I className="h-5 w-5 text-bad" /></span>{n}</span></td>
+                    <td className="py-2"><span className="flex items-center gap-3"><img src={I} alt={n} className="h-8 w-10 object-contain" />{n}</span></td>
                     <td className="text-right">{a}</td><td className="text-right">{b}</td>
                     <td className="text-center"><span className="inline-block rounded-md bg-bad-soft px-4 py-1 font-semibold text-bad">{c}</span></td>
                     <td><BarChart3 className="mx-auto h-5 w-5 text-brand" /></td>
