@@ -52,8 +52,8 @@ function Card({ className = "", children }: { className?: string; children: Reac
 
 function Dropdown({ icon: I, label }: { icon: any; label: string }) {
   return (
-    <button className="flex h-10 items-center gap-2 whitespace-nowrap rounded-lg border bg-card px-4 text-sm font-medium text-ink hover:bg-muted">
-      <I className="h-4 w-4" /> <span className="mr-3">{label}</span> <ChevronDown className="h-4 w-4" />
+    <button className="flex h-10 items-center gap-2 whitespace-nowrap rounded-lg border bg-card px-3 text-sm font-medium text-ink hover:bg-muted">
+      <I className="h-4 w-4" /> <span className="mr-1 xl:mr-3">{label}</span> <ChevronDown className="h-4 w-4" />
     </button>
   );
 }
@@ -116,13 +116,13 @@ function Index() {
         <div className="mt-2 flex items-start justify-between gap-4">
           <div>
             <h1 className="text-[32px] font-bold leading-tight tracking-tight">Maliyet Analizleri</h1>
-            <p className="whitespace-nowrap text-[15px] text-muted-foreground">Ürün maliyetleri, kârlılık ve maliyet değişimlerini analiz edin, hızlı karar verin.</p>
+            <p className="text-[15px] text-muted-foreground">Ürün maliyetleri, kârlılık ve maliyet değişimlerini analiz edin, hızlı karar verin.</p>
           </div>
-          <div className="mt-2 flex shrink-0 gap-3">
+          <div className="mt-2 flex shrink-0 gap-2 2xl:gap-3">
             <Dropdown icon={Calendar} label="Son 30 Gün" />
             <Dropdown icon={CircleDollarSign} label="TRY" />
             <Dropdown icon={Box} label="Tüm Depolar" />
-            <button className="flex h-10 items-center gap-2 rounded-lg border border-brand bg-card whitespace-nowrap px-7 text-sm font-semibold text-brand hover:bg-brand-soft"><Filter className="h-4 w-4" />Filtreler</button>
+            <button className="flex h-10 items-center gap-2 rounded-lg border border-brand bg-card whitespace-nowrap px-4 xl:px-7 text-sm font-semibold text-brand hover:bg-brand-soft"><Filter className="h-4 w-4" />Filtreler</button>
             <button className="flex h-10 items-center gap-2 whitespace-nowrap rounded-lg bg-brand px-5 text-sm font-semibold text-primary-foreground hover:opacity-90"><Download className="h-4 w-4" />Dışa Aktar<ChevronDown className="h-4 w-4" /></button>
           </div>
         </div>
