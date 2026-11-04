@@ -115,8 +115,8 @@ function Index() {
         </div>
         <div className="mt-2 flex items-start justify-between gap-4">
           <div>
-            <h1 className="text-[32px] font-bold leading-tight tracking-tight">Maliyet Analizleri</h1>
-            <p className="text-[15px] text-muted-foreground">Ürün maliyetleri, kârlılık ve maliyet değişimlerini analiz edin, hızlı karar verin.</p>
+            <h1 className="text-[32px] font-extrabold leading-tight tracking-tight">Maliyet Analizleri</h1>
+            <p className="text-[15px] text-ink/80">Ürün maliyetleri, kârlılık ve maliyet değişimlerini analiz edin, hızlı karar verin.</p>
           </div>
           <div className="mt-2 flex shrink-0 gap-2 2xl:gap-3">
             <Dropdown icon={Calendar} label="Son 30 Gün" />
@@ -140,27 +140,27 @@ function Index() {
         {/* KPI cards */}
         <div className="mt-5 grid grid-cols-4 gap-4">
           {[
-            { bg: "bg-brand-soft", ic: Boxes, icc: "text-brand", t: "Stok Maliyet Değeri", v: "₺ 2.480.000", s: "Önceki döneme göre", b: "-%1,8", bi: ArrowDown },
-            { bg: "bg-ok-soft", ic: Coins, icc: "text-ok", t: "Satış Brüt Kârı", v: "₺ 386.000", s: "Önceki döneme göre", b: "+%8,4", bi: ArrowUp },
-            { bg: "bg-violet-soft", ic: Percent, icc: "text-violet", t: "Brüt Kâr Marjı", v: "% 23,4", s: "Önceki dönem: %21,6", b: "+1,8 puan", bi: ArrowUp },
+            { bg: "bg-brand-soft border-brand/15", ring: "bg-brand-ring", ic: Boxes, icc: "text-brand", t: "Stok Maliyet Değeri", v: "₺ 2.480.000", s: "Önceki döneme göre", b: "-%1,8", bi: ArrowDown },
+            { bg: "bg-ok-soft border-ok/20", ring: "bg-ok-ring", ic: Coins, icc: "text-ok", t: "Satış Brüt Kârı", v: "₺ 386.000", s: "Önceki döneme göre", b: "+%8,4", bi: ArrowUp },
+            { bg: "bg-violet-soft border-violet/15", ring: "bg-violet-ring", ic: Percent, icc: "text-violet", t: "Brüt Kâr Marjı", v: "% 23,4", s: "Önceki dönem: %21,6", b: "+1,8 puan", bi: ArrowUp },
           ].map((k) => (
-            <div key={k.t} className={`flex h-[122px] gap-4 rounded-xl border p-4 ${k.bg}`}>
-              <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-card/70"><k.ic className={`h-8 w-8 ${k.icc}`} /></div>
-              <div className="flex-1 pt-1">
-                <div className="flex items-center gap-2 text-sm font-semibold">{k.t}<Info className="h-4 w-4" /></div>
-                <div className="mt-1 text-[26px] font-bold">{k.v}</div>
-                <div className="mt-1 flex items-center justify-between gap-2 whitespace-nowrap text-sm text-muted-foreground">{k.s}
-                  <span className="flex items-center gap-1 shrink-0 whitespace-nowrap rounded-md bg-ok-soft px-2 py-0.5 text-sm font-semibold text-ok brightness-95"><k.bi className="h-4 w-4" />{k.b}</span>
+            <div key={k.t} className={`flex h-[122px] gap-3 rounded-xl border p-4 ${k.bg}`}>
+              <div className={`flex h-14 w-14 shrink-0 items-center justify-center rounded-full ${k.ring}`}><k.ic className={`h-8 w-8 ${k.icc}`} /></div>
+              <div className="min-w-0 flex-1 pt-1">
+                <div className="flex items-center gap-2 text-[15px] font-semibold">{k.t}<Info className="h-4 w-4" /></div>
+                <div className="mt-1 text-[27px] font-bold tracking-tight">{k.v}</div>
+                <div className="mt-1 flex items-center justify-between gap-2 whitespace-nowrap text-sm text-ink/80">{k.s}
+                  <span className="flex items-center gap-1 shrink-0 whitespace-nowrap rounded-md bg-ok-ring px-2 py-0.5 text-[13px] font-bold text-ok-ink"><k.bi className="h-4 w-4" />{k.b}</span>
                 </div>
               </div>
             </div>
           ))}
-          <div className="flex h-[122px] cursor-pointer gap-4 rounded-xl border bg-warn-soft p-4 hover:brightness-[0.98]">
-            <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-card/70"><AlertTriangle className="h-8 w-8 text-warn" /></div>
-            <div className="flex-1 pt-1">
-              <div className="flex items-center gap-2 text-sm font-semibold">Maliyeti Artan Ürün<Info className="h-4 w-4" /></div>
-              <div className="mt-1 text-[26px] font-bold">18</div>
-              <div className="mt-1 text-sm text-muted-foreground">İncelenmesi gereken</div>
+          <div className="flex h-[122px] cursor-pointer gap-4 rounded-xl border border-warn/20 bg-warn-soft p-4 hover:brightness-[0.98]">
+            <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-warn-ring"><AlertTriangle className="h-8 w-8 text-warn" /></div>
+            <div className="min-w-0 flex-1 pt-1">
+              <div className="flex items-center gap-2 text-[15px] font-semibold">Maliyeti Artan Ürün<Info className="h-4 w-4" /></div>
+              <div className="mt-1 text-[27px] font-bold tracking-tight">18</div>
+              <div className="mt-1 text-sm text-ink/80">İncelenmesi gereken</div>
             </div>
             <ChevronRight className="mt-10 h-5 w-5 text-warn" />
           </div>
@@ -170,7 +170,7 @@ function Index() {
         <div className="mt-4 grid grid-cols-[1fr_490px] gap-4">
           <Card className="p-5 pb-2">
             <div className="flex items-center justify-between">
-              <h2 className="flex items-center gap-2 text-lg font-bold">Satış ve Maliyet Eğilimi <Info className="h-4 w-4" /></h2>
+              <h2 className="flex items-center gap-2 text-lg font-bold tracking-tight">Satış ve Maliyet Eğilimi <Info className="h-4 w-4" /></h2>
               <div className="flex gap-6 text-sm font-medium">
                 <span className="flex items-center gap-2"><span className="h-2.5 w-2.5 rounded-full bg-brand" />Net Satış</span>
                 <span className="flex items-center gap-2"><span className="h-2.5 w-2.5 rounded-full bg-warn" />Satış Maliyeti</span>
@@ -193,7 +193,7 @@ function Index() {
           </Card>
 
           <Card className="p-5">
-            <h2 className="flex items-center gap-2 text-lg font-bold">Dikkat Gerektiren Başlıklar <Info className="h-4 w-4" /></h2>
+            <h2 className="flex items-center gap-2 text-lg font-bold tracking-tight">Dikkat Gerektiren Başlıklar <Info className="h-4 w-4" /></h2>
             <div className="mt-3 space-y-2">
               {[
                 { bg: "bg-bad-soft border-bad/20", ic: <ArrowUp className="h-7 w-7 text-bad" />, t: "Maliyeti Yükselen Ürünler", d: "Son 30 günde maliyeti artan 18 ürün var.", cc: "text-bad" },
@@ -202,7 +202,7 @@ function Index() {
               ].map((a) => (
                 <button key={a.t} className={`flex h-[56px] w-full items-center gap-4 rounded-lg border px-4 text-left hover:brightness-[0.98] ${a.bg}`}>
                   <span className="w-8">{a.ic}</span>
-                  <span className="flex-1"><span className="block text-[15px] font-semibold">{a.t}</span><span className="block text-xs">{a.d}</span></span>
+                  <span className="flex-1"><span className="block text-[15px] font-semibold">{a.t}</span><span className="block text-xs text-ink/80">{a.d}</span></span>
                   <ChevronRight className={`h-5 w-5 ${a.cc}`} />
                 </button>
               ))}
@@ -214,7 +214,7 @@ function Index() {
         <div className="mt-4 grid grid-cols-2 gap-4">
           <Card className="p-4">
             <div className="flex items-center justify-between">
-              <h2 className="flex items-center gap-2 text-lg font-bold">En Çok Kazandıran Ürünler (Brüt Kâr) <Info className="h-4 w-4" /></h2>
+              <h2 className="flex items-center gap-2 text-lg font-bold tracking-tight">En Çok Kazandıran Ürünler (Brüt Kâr) <Info className="h-4 w-4" /></h2>
               <a className="cursor-pointer text-sm font-medium text-brand">Tümünü Gör</a>
             </div>
             <table className="mt-3 w-full text-sm">
@@ -228,7 +228,7 @@ function Index() {
                   <tr key={n} className="border-b last:border-0 hover:bg-muted/50">
                     <td className="py-2"><span className="flex items-center gap-3"><img src={I} alt={n} className="h-8 w-10 object-contain" />{n}</span></td>
                     <td className="text-right">{tl(a)}</td><td className="text-right">{tl(b)}</td><td className="text-right">{tl(c)}</td>
-                    <td className="text-right"><span className="inline-block rounded-md bg-ok-soft px-4 py-1 font-semibold text-ok">{m}</span></td>
+                    <td className="text-right"><span className="inline-block rounded-md bg-ok-ring px-4 py-1 font-bold text-ok-ink">{m}</span></td>
                   </tr>
                 ))}
               </tbody>
@@ -237,7 +237,7 @@ function Index() {
 
           <Card className="p-4">
             <div className="flex items-center justify-between">
-              <h2 className="flex items-center gap-2 text-lg font-bold">En Çok Maliyeti Artan Ürünler <Info className="h-4 w-4" /></h2>
+              <h2 className="flex items-center gap-2 text-lg font-bold tracking-tight">En Çok Maliyeti Artan Ürünler <Info className="h-4 w-4" /></h2>
               <a className="cursor-pointer text-sm font-medium text-brand">Tümünü Gör</a>
             </div>
             <table className="mt-3 w-full text-sm">
@@ -251,7 +251,7 @@ function Index() {
                   <tr key={n} className="border-b last:border-0 hover:bg-muted/50">
                     <td className="py-2"><span className="flex items-center gap-3"><img src={I} alt={n} className="h-8 w-10 object-contain" />{n}</span></td>
                     <td className="text-right">{a}</td><td className="text-right">{b}</td>
-                    <td className="text-center"><span className="inline-block rounded-md bg-bad-soft px-4 py-1 font-semibold text-bad">{c}</span></td>
+                    <td className="text-center"><span className="inline-block rounded-md bg-bad-soft px-4 py-1 font-bold text-bad">{c}</span></td>
                     <td><BarChart3 className="mx-auto h-5 w-5 text-brand" /></td>
                   </tr>
                 ))}

@@ -147,24 +147,35 @@
   --color-amber: var(--amber);
   --color-amber-soft: var(--amber-soft);
   --color-ink: var(--ink);
+  --color-brand-ring: var(--brand-ring);
+  --color-ok-ring: var(--ok-ring);
+  --color-violet-ring: var(--violet-ring);
+  --color-warn-ring: var(--warn-ring);
+  --color-ok-ink: var(--ok-ink);
   --color-page: var(--page);
 }
 
 :root {
   --page: oklch(0.985 0.004 250);
-  --ink: oklch(0.22 0.03 260);
+  --ink: oklch(0.2 0.03 265);
   --brand: oklch(0.55 0.22 260);
-  --brand-soft: oklch(0.95 0.03 255);
+  --brand-soft: oklch(0.965 0.018 255);
   --ok: oklch(0.6 0.15 150);
-  --ok-soft: oklch(0.95 0.05 155);
+  --ok-soft: oklch(0.965 0.03 160);
   --warn: oklch(0.7 0.18 50);
-  --warn-soft: oklch(0.97 0.03 60);
+  --warn-soft: oklch(0.975 0.02 60);
   --bad: oklch(0.58 0.22 25);
-  --bad-soft: oklch(0.96 0.03 20);
+  --bad-soft: oklch(0.96 0.025 15);
   --violet: oklch(0.55 0.22 300);
-  --violet-soft: oklch(0.96 0.03 300);
+  --violet-soft: oklch(0.97 0.018 300);
   --amber: oklch(0.78 0.15 80);
-  --amber-soft: oklch(0.97 0.05 90);
+  --amber-soft: oklch(0.975 0.04 90);
+  --brand-ring: oklch(0.92 0.04 255);
+  --ok-ring: oklch(0.91 0.06 160);
+  --violet-ring: oklch(0.92 0.05 300);
+  --warn-ring: oklch(0.93 0.05 60);
+  --ok-ink: oklch(0.45 0.13 150);
+  --muted-foreground: oklch(0.42 0.025 260);
 }
 
 @layer base {
