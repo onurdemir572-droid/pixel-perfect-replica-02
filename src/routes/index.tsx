@@ -144,8 +144,8 @@ function Index() {
               <div className="flex-1 pt-1">
                 <div className="flex items-center gap-2 text-sm font-semibold">{k.t}<Info className="h-4 w-4" /></div>
                 <div className="mt-1 text-[26px] font-bold">{k.v}</div>
-                <div className="mt-1 flex items-center justify-between text-sm text-muted-foreground">{k.s}
-                  <span className="flex items-center gap-1 rounded-md bg-ok-soft px-2 py-0.5 text-sm font-semibold text-ok brightness-95"><k.bi className="h-4 w-4" />{k.b}</span>
+                <div className="mt-1 flex items-center justify-between gap-2 whitespace-nowrap text-sm text-muted-foreground">{k.s}
+                  <span className="flex items-center gap-1 shrink-0 whitespace-nowrap rounded-md bg-ok-soft px-2 py-0.5 text-sm font-semibold text-ok brightness-95"><k.bi className="h-4 w-4" />{k.b}</span>
                 </div>
               </div>
             </div>
@@ -178,7 +178,7 @@ function Index() {
                   <CartesianGrid vertical={false} stroke="var(--border)" />
                   <XAxis dataKey="m" axisLine={false} tickLine={false} tick={{ fontSize: 13, fill: "var(--ink)" }} />
                   <YAxis ticks={[0, 100, 200, 300, 400, 500, 600]} domain={[0, 600]} axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: "var(--ink)" }} tickFormatter={(v) => (v ? `${v} B` : "0")} />
-                  <Tooltip content={<ChartTip />} cursor={{ stroke: "var(--muted-foreground)", strokeDasharray: "4 4" }} defaultIndex={4} />
+                  <Tooltip content={<ChartTip />} cursor={{ stroke: "var(--muted-foreground)", strokeDasharray: "4 4" }} defaultIndex={4} position={{ y: 0 }} offset={40} />
                   <Bar dataKey="k" fill="var(--ok)" fillOpacity={0.35} barSize={58} radius={[3, 3, 0, 0]} />
                   <Line dataKey="c" stroke="var(--warn)" strokeWidth={2.5} dot={{ r: 4, fill: "var(--warn)" }} activeDot={{ r: 5 }} />
                   <Line dataKey="s" stroke="var(--brand)" strokeWidth={2.5} dot={{ r: 4, fill: "var(--brand)" }} activeDot={{ r: 6 }} />
