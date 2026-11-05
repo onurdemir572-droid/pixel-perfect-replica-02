@@ -133,7 +133,7 @@
 }
 
 @theme inline {
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Roboto", ui-sans-serif, system-ui, sans-serif;
   --color-brand: var(--brand);
   --color-brand-soft: var(--brand-soft);
   --color-ok: var(--ok);
@@ -156,26 +156,86 @@
 }
 
 :root {
-  --page: oklch(0.985 0.004 250);
-  --ink: oklch(0.2 0.03 265);
-  --brand: oklch(0.55 0.22 260);
-  --brand-soft: oklch(0.965 0.018 255);
-  --ok: oklch(0.6 0.15 150);
-  --ok-soft: oklch(0.965 0.03 160);
-  --warn: oklch(0.7 0.18 50);
-  --warn-soft: oklch(0.975 0.02 60);
-  --bad: oklch(0.58 0.22 25);
-  --bad-soft: oklch(0.96 0.025 15);
+  --page: oklch(0.991 0.004 255);
+  --ink: oklch(0.16 0.04 270);
+  --brand: oklch(0.53 0.27 263);
+  --brand-soft: oklch(0.965 0.022 255);
+  --ok: oklch(0.7 0.2 155);
+  --ok-soft: oklch(0.975 0.022 170);
+  --warn: oklch(0.71 0.2 48);
+  --warn-soft: oklch(0.978 0.015 60);
+  --bad: oklch(0.61 0.25 25);
+  --bad-soft: oklch(0.958 0.031 20);
   --violet: oklch(0.55 0.22 300);
-  --violet-soft: oklch(0.97 0.018 300);
+  --violet-soft: oklch(0.967 0.024 295);
   --amber: oklch(0.78 0.15 80);
   --amber-soft: oklch(0.975 0.04 90);
-  --brand-ring: oklch(0.92 0.04 255);
-  --ok-ring: oklch(0.91 0.06 160);
-  --violet-ring: oklch(0.92 0.05 300);
-  --warn-ring: oklch(0.93 0.05 60);
-  --ok-ink: oklch(0.45 0.13 150);
-  --muted-foreground: oklch(0.42 0.025 260);
+  --brand-ring: oklch(0.935 0.036 255);
+  --ok-ring: oklch(0.95 0.047 165);
+  --violet-ring: oklch(0.925 0.05 295);
+  --warn-ring: oklch(0.948 0.045 65);
+  --ok-ink: oklch(0.42 0.15 145);
+  --muted-foreground: oklch(0.39 0.045 262);
+  --border: oklch(0.895 0.026 255);
+  --input: oklch(0.86 0.036 255);
+  --dashboard-shadow: 0 2px 2px oklch(0.55 0.08 255 / 0.12);
+  --tooltip-shadow: 0 3px 8px oklch(0.4 0.05 255 / 0.18);
+  --surface-shading: linear-gradient(120deg, var(--card), var(--page));
+  --blue-shading: linear-gradient(115deg, var(--brand-soft), var(--page));
+  --green-shading: linear-gradient(115deg, var(--ok-soft), var(--page));
+  --violet-shading: linear-gradient(115deg, var(--violet-soft), var(--page));
+  --orange-shading: linear-gradient(115deg, var(--warn-soft), var(--page));
+}
+
+.cost-dashboard { letter-spacing: 0; }
+.dashboard-card { background: var(--surface-shading); box-shadow: var(--dashboard-shadow); border-radius: 12px; }
+.dashboard-kpi:nth-child(1) { background: var(--blue-shading); }
+.dashboard-kpi:nth-child(2) { background: var(--green-shading); }
+.dashboard-kpi:nth-child(3) { background: var(--violet-shading); }
+.dashboard-kpi:nth-child(4) { background: var(--orange-shading); }
+.dashboard-tooltip { box-shadow: var(--tooltip-shadow); }
+.dashboard-table th { background: var(--page); font-size: 12px; }
+.dashboard-table td { height: 36px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.dashboard-table td:first-child { white-space: nowrap; }
+.dashboard-table td img { width: 36px; height: 30px; }
+.dashboard-table td:last-child > span.inline-block { padding: 3px 14px; border-radius: 999px; }
+.dashboard-table td:nth-child(4) > span.inline-block { border-radius: 999px; padding: 3px 12px; }
+.dashboard-alert svg { width: 24px; height: 24px; }
+.dashboard-alert > svg:last-child { width: 18px; height: 18px; }
+.dashboard-alert:nth-child(1) > span:first-child { background: var(--bad-soft); }
+.dashboard-alert:nth-child(2) > span:first-child { background: var(--warn-ring); }
+.dashboard-alert:nth-child(3) > span:first-child { background: var(--brand-ring); }
+.dashboard-alert:nth-child(3) > span:nth-child(2) > span:first-child { color: var(--brand); }
+.dashboard-calculator.dashboard-card { background: var(--blue-shading); box-shadow: none; }
+.dashboard-kpi svg { flex-shrink: 0; }
+.dashboard-tabs svg { width: 20px; height: 20px; }
+.dashboard-calculator { display: grid; grid-template-columns: 48px minmax(230px, 1fr) minmax(150px, 188px) minmax(110px, 142px) minmax(100px, 128px) 22px 160px 146px; gap: 14px; }
+.dashboard-calculator label, .dashboard-calculator input, .dashboard-calculator select { min-width: 0; width: 100%; }
+.dashboard-calculator label > span { width: 100%; }
+@media (max-width: 1200px) {
+  .dashboard-calculator { grid-template-columns: 40px minmax(180px, 1fr) 150px 110px 105px 18px 145px 110px; gap: 10px; }
+}
+@media (max-width: 1000px) {
+  .dashboard-heading { flex-wrap: wrap; }
+  .dashboard-kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .dashboard-middle, .dashboard-tables { grid-template-columns: minmax(0, 1fr); }
+  .dashboard-calculator { grid-template-columns: 40px 1fr 1fr; }
+  .dashboard-calculator > div:nth-child(2) { grid-column: span 2; }
+}
+@media (max-width: 600px) {
+  .dashboard-topbar { padding-inline: 16px; }
+  .dashboard-search { width: 100%; }
+  .dashboard-account { display: none; }
+  .dashboard-tabs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .dashboard-filters { flex-wrap: wrap; width: 100%; min-width: 0; }
+  .dashboard-kpis { grid-template-columns: minmax(0, 1fr); }
+  .dashboard-chart-heading { flex-wrap: wrap; gap: 10px; }
+  .dashboard-middle > div { min-width: 0; overflow: hidden; }
+  .dashboard-tables > div { overflow-x: auto; }
+  .dashboard-table { min-width: 530px; }
+  .dashboard-calculator { grid-template-columns: 1fr 1fr; }
+  .dashboard-calculator > div:first-child { display: none; }
+  .dashboard-calculator > div:nth-child(2) { grid-column: span 2; }
 }
 
 @layer base {

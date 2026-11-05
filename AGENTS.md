@@ -8,3 +8,5 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Dashboard visual matching is scoped with cost-dashboard classes and semantic CSS tokens so reference adjustments do not affect shared controls.
