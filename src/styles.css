@@ -198,7 +198,17 @@
 .dashboard-table td { height: 36px; font-weight: 600; font-variant-numeric: tabular-nums; }
 .dashboard-table td:first-child { white-space: nowrap; }
 .dashboard-table td img { width: 36px; height: 30px; }
-.dashboard-table td:last-child span { padding: 3px 14px; border-radius: 999px; }
+.dashboard-table td:last-child > span.inline-block { padding: 3px 14px; border-radius: 999px; }
+.dashboard-table td:nth-child(4) > span.inline-block { border-radius: 999px; padding: 3px 12px; }
+.dashboard-alert svg { width: 24px; height: 24px; }
+.dashboard-alert > svg:last-child { width: 18px; height: 18px; }
+.dashboard-alert:nth-child(1) > span:first-child { background: var(--bad-soft); }
+.dashboard-alert:nth-child(2) > span:first-child { background: var(--warn-ring); }
+.dashboard-alert:nth-child(3) > span:first-child { background: var(--brand-ring); }
+.dashboard-alert:nth-child(3) > span:nth-child(2) > span:first-child { color: var(--brand); }
+.dashboard-calculator.dashboard-card { background: var(--blue-shading); box-shadow: none; }
+.dashboard-kpi svg { flex-shrink: 0; }
+.dashboard-tabs svg { width: 20px; height: 20px; }
 .dashboard-calculator { display: grid; grid-template-columns: 48px minmax(230px, 1fr) minmax(150px, 188px) minmax(110px, 142px) minmax(100px, 128px) 22px 160px 146px; gap: 14px; }
 .dashboard-calculator label, .dashboard-calculator input, .dashboard-calculator select { min-width: 0; width: 100%; }
 .dashboard-calculator label > span { width: 100%; }

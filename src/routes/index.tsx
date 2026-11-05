@@ -7,11 +7,11 @@ import {
   ArrowUp, Coins, Percent, AlertTriangle, Minus, Package, Target, ArrowRight, Calculator,
   BrickWall, Layers, Square, Package2,
 } from "lucide-react";
-import cimento from "@/assets/p-cimento.png";
-import bims from "@/assets/p-bims.png";
-import alci from "@/assets/p-alci.png";
-import demir from "@/assets/p-demir.png";
-import tugla from "@/assets/p-tugla.png";
+import cimentoAsset from "@/assets/reference-cimento.png.asset.json";
+import bimsAsset from "@/assets/reference-bims.png.asset.json";
+import alciAsset from "@/assets/reference-alci.png.asset.json";
+import demirAsset from "@/assets/reference-demir.png.asset.json";
+import tuglaAsset from "@/assets/reference-tugla.png.asset.json";
 import {
   ComposedChart, Line, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
 } from "recharts";
@@ -40,6 +40,11 @@ const chartData = [
 ];
 
 const tl = (n: number) => "₺ " + n.toLocaleString("tr-TR");
+const cimento = cimentoAsset.url;
+const bims = bimsAsset.url;
+const alci = alciAsset.url;
+const demir = demirAsset.url;
+const tugla = tuglaAsset.url;
 
 const tabs = [
   { l: "Genel Bakış", i: BarChart3 }, { l: "Ürün Maliyetleri", i: Boxes },
@@ -142,7 +147,7 @@ function Index() {
         <div className="dashboard-kpis mt-[18px] grid grid-cols-4 gap-3.5">
           {[
             { bg: "bg-brand-soft border-brand/15", ring: "bg-brand-ring", ic: Boxes, icc: "text-brand", t: "Stok Maliyet Değeri", v: "₺ 2.480.000", s: "Önceki döneme göre", b: "-%1,8", bi: ArrowDown },
-            { bg: "bg-ok-soft border-ok/20", ring: "bg-ok-ring", ic: CircleDollarSign, icc: "text-ok", t: "Satış Brüt Kârı", v: "₺ 386.000", s: "Önceki döneme göre", b: "+%8,4", bi: ArrowUp },
+            { bg: "bg-ok-soft border-ok/20", ring: "bg-ok-ring", ic: Coins, icc: "text-ok", t: "Satış Brüt Kârı", v: "₺ 386.000", s: "Önceki döneme göre", b: "+%8,4", bi: ArrowUp },
             { bg: "bg-violet-soft border-violet/15", ring: "bg-violet-ring", ic: Percent, icc: "text-violet", t: "Brüt Kâr Marjı", v: "% 23,4", s: "Önceki dönem: %21,6", b: "+1,8 puan", bi: ArrowUp },
           ].map((k) => (
             <div key={k.t} className={`dashboard-kpi flex h-[122px] gap-5 rounded-xl border p-3.5 ${k.bg}`}>
@@ -201,7 +206,7 @@ function Index() {
                 { bg: "bg-amber-soft border-amber/30", ic: <Minus className="h-8 w-8 text-amber" />, t: "Düşük Marjlı Satışlar", d: "Brüt kâr marjı %10'un altında olan 12 ürün.", cc: "text-warn" },
                 { bg: "bg-brand-soft border-brand/20", ic: <Package className="h-7 w-7 text-brand" />, t: "Maliyet Verisi Eksik Ürünler", d: "Analize dâhil edilemeyen 7 ürün.", cc: "text-brand" },
               ].map((a) => (
-                <Button variant="ghost" key={a.t} className={`flex h-[56px] w-full items-center gap-3 rounded-lg border px-3 text-left hover:brightness-[0.98] ${a.bg}`}>
+                <Button variant="ghost" key={a.t} className={`dashboard-alert flex h-[56px] w-full items-center gap-3 rounded-lg border px-3 text-left hover:brightness-[0.98] ${a.bg}`}>
                   <span className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full ${a.bg.split(" ")[0]}`}>{a.ic}</span>
                   <span className="flex-1"><span className="block text-[15px] font-bold">{a.t}</span><span className="block text-xs text-muted-foreground">{a.d}</span></span>
                   <ChevronRight className={`h-5 w-5 ${a.cc}`} />
