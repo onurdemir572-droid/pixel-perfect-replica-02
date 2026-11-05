@@ -155,7 +155,7 @@ function Index() {
               </div>
             </div>
           ))}
-          <div className="flex h-[122px] cursor-pointer gap-4 rounded-xl border border-warn/20 bg-warn-soft p-4 hover:brightness-[0.98]">
+          <div className="flex h-[122px] cursor-pointer gap-3 rounded-xl border border-warn/20 bg-warn-soft p-3.5 2xl:p-4 hover:brightness-[0.98]">
             <div className="flex h-12 w-12 2xl:h-14 2xl:w-14 shrink-0 items-center justify-center rounded-full bg-warn-ring"><AlertTriangle className="h-8 w-8 text-warn" /></div>
             <div className="min-w-0 flex-1 pt-1">
               <div className="flex items-center gap-2 text-[15px] font-semibold">Maliyeti Artan Ürün<Info className="h-4 w-4" /></div>
