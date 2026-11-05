@@ -227,9 +227,10 @@
   .dashboard-search { width: 100%; }
   .dashboard-account { display: none; }
   .dashboard-tabs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .dashboard-filters { flex-wrap: wrap; }
+  .dashboard-filters { flex-wrap: wrap; width: 100%; min-width: 0; }
   .dashboard-kpis { grid-template-columns: minmax(0, 1fr); }
   .dashboard-chart-heading { flex-wrap: wrap; gap: 10px; }
+  .dashboard-middle > div { min-width: 0; overflow: hidden; }
   .dashboard-tables > div { overflow-x: auto; }
   .dashboard-table { min-width: 530px; }
   .dashboard-calculator { grid-template-columns: 1fr 1fr; }
