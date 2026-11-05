@@ -149,8 +149,8 @@ function Index() {
               <div className="min-w-0 flex-1 pt-1">
                 <div className="flex items-center gap-2 text-[15px] font-semibold">{k.t}<Info className="h-4 w-4" /></div>
                 <div className="mt-1 text-[27px] font-bold tracking-tight">{k.v}</div>
-                <div className="mt-1 flex items-center justify-between gap-2 whitespace-nowrap text-sm text-ink/80">{k.s}
-                  <span className="flex items-center gap-1 shrink-0 whitespace-nowrap rounded-md bg-ok-ring px-2 py-0.5 text-[13px] font-bold text-ok-ink"><k.bi className="h-4 w-4" />{k.b}</span>
+                <div className="mt-1 flex items-center justify-between gap-1.5 whitespace-nowrap text-[13px] xl:text-sm text-ink/80">{k.s}
+                  <span className="flex items-center gap-1 shrink-0 whitespace-nowrap rounded-md bg-ok-ring px-1.5 py-0.5 text-[12px] xl:text-[13px] font-bold text-ok-ink"><k.bi className="h-4 w-4" />{k.b}</span>
                 </div>
               </div>
             </div>
