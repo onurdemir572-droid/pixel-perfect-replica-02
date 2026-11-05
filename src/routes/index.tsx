@@ -144,19 +144,19 @@ function Index() {
             { bg: "bg-ok-soft border-ok/20", ring: "bg-ok-ring", ic: Coins, icc: "text-ok", t: "Satış Brüt Kârı", v: "₺ 386.000", s: "Önceki döneme göre", b: "+%8,4", bi: ArrowUp },
             { bg: "bg-violet-soft border-violet/15", ring: "bg-violet-ring", ic: Percent, icc: "text-violet", t: "Brüt Kâr Marjı", v: "% 23,4", s: "Önceki dönem: %21,6", b: "+1,8 puan", bi: ArrowUp },
           ].map((k) => (
-            <div key={k.t} className={`flex h-[122px] gap-3 rounded-xl border p-4 ${k.bg}`}>
-              <div className={`flex h-14 w-14 shrink-0 items-center justify-center rounded-full ${k.ring}`}><k.ic className={`h-8 w-8 ${k.icc}`} /></div>
+            <div key={k.t} className={`flex h-[122px] gap-3 rounded-xl border p-3.5 2xl:p-4 ${k.bg}`}>
+              <div className={`flex h-12 w-12 2xl:h-14 2xl:w-14 shrink-0 items-center justify-center rounded-full ${k.ring}`}><k.ic className={`h-8 w-8 ${k.icc}`} /></div>
               <div className="min-w-0 flex-1 pt-1">
                 <div className="flex items-center gap-2 text-[15px] font-semibold">{k.t}<Info className="h-4 w-4" /></div>
                 <div className="mt-1 text-[27px] font-bold tracking-tight">{k.v}</div>
-                <div className="mt-1 flex items-center justify-between gap-2 whitespace-nowrap text-sm text-ink/80">{k.s}
-                  <span className="flex items-center gap-1 shrink-0 whitespace-nowrap rounded-md bg-ok-ring px-2 py-0.5 text-[13px] font-bold text-ok-ink"><k.bi className="h-4 w-4" />{k.b}</span>
+                <div className="mt-1 flex items-center justify-between gap-1.5 whitespace-nowrap text-[13px] 2xl:text-sm text-ink/80">{k.s}
+                  <span className="flex items-center gap-1 shrink-0 whitespace-nowrap rounded-md bg-ok-ring px-1.5 py-0.5 text-[12px] 2xl:text-[13px] font-bold text-ok-ink"><k.bi className="h-4 w-4" />{k.b}</span>
                 </div>
               </div>
             </div>
           ))}
-          <div className="flex h-[122px] cursor-pointer gap-4 rounded-xl border border-warn/20 bg-warn-soft p-4 hover:brightness-[0.98]">
-            <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-warn-ring"><AlertTriangle className="h-8 w-8 text-warn" /></div>
+          <div className="flex h-[122px] cursor-pointer gap-3 rounded-xl border border-warn/20 bg-warn-soft p-3.5 2xl:p-4 hover:brightness-[0.98]">
+            <div className="flex h-12 w-12 2xl:h-14 2xl:w-14 shrink-0 items-center justify-center rounded-full bg-warn-ring"><AlertTriangle className="h-8 w-8 text-warn" /></div>
             <div className="min-w-0 flex-1 pt-1">
               <div className="flex items-center gap-2 text-[15px] font-semibold">Maliyeti Artan Ürün<Info className="h-4 w-4" /></div>
               <div className="mt-1 text-[27px] font-bold tracking-tight">18</div>
