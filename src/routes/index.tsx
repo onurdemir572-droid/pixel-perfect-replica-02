@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
+import { Button } from "@/components/ui/button";
 import {
   Search, Bell, HelpCircle, ChevronDown, ChevronRight, Calendar, CircleDollarSign, Box, Filter,
   Download, BarChart3, Boxes, TrendingUp, ArrowUpDown, Lightbulb, FileText, Info, ArrowDown,
@@ -47,14 +48,14 @@ const tabs = [
 ];
 
 function Card({ className = "", children }: { className?: string; children: React.ReactNode }) {
-  return <div className={`rounded-xl border bg-card shadow-sm ${className}`}>{children}</div>;
+  return <div className={`dashboard-card border bg-card ${className}`}>{children}</div>;
 }
 
 function Dropdown({ icon: I, label }: { icon: any; label: string }) {
   return (
-    <button className="flex h-10 items-center gap-2 whitespace-nowrap rounded-lg border bg-card px-3 text-sm font-medium text-ink hover:bg-muted">
-      <I className="h-4 w-4" /> <span className="mr-1 xl:mr-3">{label}</span> <ChevronDown className="h-4 w-4" />
-    </button>
+    <Button variant="ghost" className="flex h-10 items-center gap-2 whitespace-nowrap rounded-lg border bg-card px-3 text-sm font-semibold text-ink hover:bg-muted">
+      <I className="h-4 w-4" /> <span className="mr-1">{label}</span> <ChevronDown className="h-4 w-4" />
+    </Button>
   );
 }
 
@@ -68,7 +69,7 @@ function ChartTip({ active, payload }: any) {
     </div>
   );
   return (
-    <div className="w-52 rounded-lg border bg-card p-3 text-xs shadow-lg">
+    <div className="dashboard-tooltip w-52 rounded-lg border bg-card p-3 text-xs">
       <div className="mb-1 font-semibold">{d.m === "Eyl" ? "Eki" : d.m}</div>
       {row("bg-brand", "Net Satış:", tl(d.s * 1000))}
       {row("bg-warn", "Satış Maliyeti:", tl(d.c * 1000))}
@@ -90,15 +91,15 @@ function Index() {
   };
 
   return (
-    <div className="min-h-screen bg-page">
+    <div className="cost-dashboard min-h-screen bg-page">
       {/* Top bar */}
-      <header className="flex h-[52px] items-center justify-between border-b bg-card px-10">
-        <div className="flex h-10 w-[435px] items-center gap-3 bg-card rounded-lg border px-4 text-sm text-muted-foreground">
+      <header className="dashboard-topbar flex h-[52px] items-center justify-between border-b bg-page px-10">
+        <div className="dashboard-search flex h-10 w-[435px] items-center gap-3 bg-card rounded-lg border px-4 text-sm text-muted-foreground">
           <Search className="h-4 w-4 text-ink" />
           <input className="w-[200px] bg-transparent outline-none placeholder:text-muted-foreground" placeholder="Ürün, cari, fatura, sipariş ara..." />
           <span>(Ctrl + K)</span>
         </div>
-        <div className="flex items-center gap-8">
+        <div className="dashboard-account flex items-center gap-8">
           <div className="relative"><Bell className="h-5 w-5" /><span className="absolute -right-0.5 -top-0.5 h-2 w-2 rounded-full bg-bad" /></div>
           <HelpCircle className="h-5 w-5" />
           <div className="flex items-center gap-3">
@@ -109,69 +110,69 @@ function Index() {
         </div>
       </header>
 
-      <main className="px-6 pb-4 pt-3">
+      <main className="px-[22px] pb-3 pt-3">
         <div className="flex items-center gap-4 text-sm">
           <a className="font-medium text-brand">Raporlar</a><ChevronRight className="h-4 w-4 text-muted-foreground" /><span className="text-muted-foreground">Maliyet Analizleri</span>
         </div>
-        <div className="mt-2 flex items-start justify-between gap-4">
+        <div className="dashboard-heading mt-2 flex items-start justify-between gap-3">
           <div>
-            <h1 className="text-[32px] font-extrabold leading-tight tracking-tight">Maliyet Analizleri</h1>
-            <p className="text-[15px] text-ink/80">Ürün maliyetleri, kârlılık ve maliyet değişimlerini analiz edin, hızlı karar verin.</p>
+            <h1 className="text-[30px] font-bold leading-tight">Maliyet Analizleri</h1>
+            <p className="text-[14px] text-muted-foreground">Ürün maliyetleri, kârlılık ve maliyet değişimlerini analiz edin, hızlı karar verin.</p>
           </div>
-          <div className="mt-2 flex shrink-0 gap-2 2xl:gap-3">
+          <div className="dashboard-filters mt-1 flex shrink-0 gap-3">
             <Dropdown icon={Calendar} label="Son 30 Gün" />
             <Dropdown icon={CircleDollarSign} label="TRY" />
             <Dropdown icon={Box} label="Tüm Depolar" />
-            <button className="flex h-10 items-center gap-2 rounded-lg border border-brand bg-card whitespace-nowrap px-4 xl:px-7 text-sm font-semibold text-brand hover:bg-brand-soft"><Filter className="h-4 w-4" />Filtreler</button>
-            <button className="flex h-10 items-center gap-2 whitespace-nowrap rounded-lg bg-brand px-5 text-sm font-semibold text-primary-foreground hover:opacity-90"><Download className="h-4 w-4" />Dışa Aktar<ChevronDown className="h-4 w-4" /></button>
+            <Button variant="ghost" className="flex h-10 items-center gap-2 rounded-lg border border-brand bg-card whitespace-nowrap px-5 text-sm font-semibold text-brand hover:bg-brand-soft"><Filter className="h-4 w-4" />Filtreler</Button>
+            <Button variant="ghost" className="flex h-10 items-center gap-2 whitespace-nowrap rounded-lg bg-brand px-5 text-sm font-semibold text-primary-foreground hover:opacity-90"><Download className="h-4 w-4" />Dışa Aktar<ChevronDown className="h-4 w-4" /></Button>
           </div>
         </div>
 
         {/* Tabs */}
-        <div className="mt-4 grid grid-cols-6 gap-1.5">
+        <div className="dashboard-tabs mt-3.5 grid grid-cols-6 gap-1.5">
           {tabs.map((t, i) => (
-            <button key={t.l} onClick={() => setTab(i)}
-              className={`flex h-11 items-center justify-center gap-3 rounded-lg border text-[15px] font-semibold transition ${tab === i ? "border-brand bg-brand text-primary-foreground" : "bg-card text-ink hover:bg-muted"}`}>
+            <Button variant="ghost" key={t.l} onClick={() => setTab(i)}
+              className={`flex h-11 items-center justify-center gap-3 rounded-lg border text-[15px] font-bold transition ${tab === i ? "border-brand bg-brand text-primary-foreground" : "bg-card text-ink hover:bg-muted"}`}>
               <t.i className="h-5 w-5" />{t.l}
-            </button>
+            </Button>
           ))}
         </div>
 
         {/* KPI cards */}
-        <div className="mt-5 grid grid-cols-4 gap-4">
+        <div className="dashboard-kpis mt-[18px] grid grid-cols-4 gap-3.5">
           {[
             { bg: "bg-brand-soft border-brand/15", ring: "bg-brand-ring", ic: Boxes, icc: "text-brand", t: "Stok Maliyet Değeri", v: "₺ 2.480.000", s: "Önceki döneme göre", b: "-%1,8", bi: ArrowDown },
-            { bg: "bg-ok-soft border-ok/20", ring: "bg-ok-ring", ic: Coins, icc: "text-ok", t: "Satış Brüt Kârı", v: "₺ 386.000", s: "Önceki döneme göre", b: "+%8,4", bi: ArrowUp },
+            { bg: "bg-ok-soft border-ok/20", ring: "bg-ok-ring", ic: CircleDollarSign, icc: "text-ok", t: "Satış Brüt Kârı", v: "₺ 386.000", s: "Önceki döneme göre", b: "+%8,4", bi: ArrowUp },
             { bg: "bg-violet-soft border-violet/15", ring: "bg-violet-ring", ic: Percent, icc: "text-violet", t: "Brüt Kâr Marjı", v: "% 23,4", s: "Önceki dönem: %21,6", b: "+1,8 puan", bi: ArrowUp },
           ].map((k) => (
-            <div key={k.t} className={`flex h-[122px] gap-3 rounded-xl border p-3.5 2xl:p-4 ${k.bg}`}>
-              <div className={`flex h-12 w-12 2xl:h-14 2xl:w-14 shrink-0 items-center justify-center rounded-full ${k.ring}`}><k.ic className={`h-8 w-8 ${k.icc}`} /></div>
+            <div key={k.t} className={`dashboard-kpi flex h-[122px] gap-5 rounded-xl border p-3.5 ${k.bg}`}>
+              <div className={`flex h-14 w-14 shrink-0 items-center justify-center rounded-full ${k.ring}`}><k.ic className={`h-8 w-8 ${k.icc}`} /></div>
               <div className="min-w-0 flex-1 pt-1">
-                <div className="flex items-center gap-2 text-[15px] font-semibold">{k.t}<Info className="h-4 w-4" /></div>
-                <div className="mt-1 text-[27px] font-bold tracking-tight">{k.v}</div>
-                <div className="mt-1 flex items-center justify-between gap-1.5 whitespace-nowrap text-[13px] 2xl:text-sm text-ink/80">{k.s}
-                  <span className="flex items-center gap-1 shrink-0 whitespace-nowrap rounded-md bg-ok-ring px-1.5 py-0.5 text-[12px] 2xl:text-[13px] font-bold text-ok-ink"><k.bi className="h-4 w-4" />{k.b}</span>
+                <div className="flex items-center gap-2 text-[14px] font-bold">{k.t}<Info className="h-4 w-4" /></div>
+                <div className="mt-1 text-[28px] font-bold leading-tight">{k.v}</div>
+                <div className="mt-2 flex items-center justify-between gap-1 whitespace-nowrap text-[12px] text-muted-foreground">{k.s}
+                  <span className="flex items-center gap-1 shrink-0 whitespace-nowrap rounded-full bg-ok-ring px-2 py-0.5 text-[12px] font-bold text-ok-ink"><k.bi className="h-4 w-4" />{k.b}</span>
                 </div>
               </div>
             </div>
           ))}
-          <div className="flex h-[122px] cursor-pointer gap-3 rounded-xl border border-warn/20 bg-warn-soft p-3.5 2xl:p-4 hover:brightness-[0.98]">
-            <div className="flex h-12 w-12 2xl:h-14 2xl:w-14 shrink-0 items-center justify-center rounded-full bg-warn-ring"><AlertTriangle className="h-8 w-8 text-warn" /></div>
+          <div className="dashboard-kpi flex h-[122px] cursor-pointer gap-5 rounded-xl border border-warn/20 bg-warn-soft p-3.5 hover:brightness-[0.98]">
+            <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-warn-ring"><AlertTriangle className="h-8 w-8 text-warn" /></div>
             <div className="min-w-0 flex-1 pt-1">
-              <div className="flex items-center gap-2 text-[15px] font-semibold">Maliyeti Artan Ürün<Info className="h-4 w-4" /></div>
-              <div className="mt-1 text-[27px] font-bold tracking-tight">18</div>
-              <div className="mt-1 text-sm text-ink/80">İncelenmesi gereken</div>
+              <div className="flex items-center gap-2 text-[14px] font-bold">Maliyeti Artan Ürün<Info className="h-4 w-4" /></div>
+              <div className="mt-1 text-[28px] font-bold leading-tight">18</div>
+              <div className="mt-2 text-[12px] text-muted-foreground">İncelenmesi gereken</div>
             </div>
             <ChevronRight className="mt-10 h-5 w-5 text-warn" />
           </div>
         </div>
 
         {/* Chart + Attention */}
-        <div className="mt-4 grid grid-cols-[1fr_490px] gap-4">
+        <div className="dashboard-middle mt-4 grid grid-cols-[1.87fr_1fr] gap-[18px]">
           <Card className="p-5 pb-2">
-            <div className="flex items-center justify-between">
-              <h2 className="flex items-center gap-2 text-lg font-bold tracking-tight">Satış ve Maliyet Eğilimi <Info className="h-4 w-4" /></h2>
-              <div className="flex gap-6 text-sm font-medium">
+            <div className="dashboard-chart-heading flex items-center justify-between">
+              <h2 className="flex items-center gap-2 text-[18px] font-bold ">Satış ve Maliyet Eğilimi <Info className="h-4 w-4" /></h2>
+              <div className="flex gap-5 text-xs font-semibold">
                 <span className="flex items-center gap-2"><span className="h-2.5 w-2.5 rounded-full bg-brand" />Net Satış</span>
                 <span className="flex items-center gap-2"><span className="h-2.5 w-2.5 rounded-full bg-warn" />Satış Maliyeti</span>
                 <span className="flex items-center gap-2"><span className="h-2.5 w-2.5 rounded-full bg-ok" />Brüt Kâr</span>
@@ -184,40 +185,40 @@ function Index() {
                   <XAxis dataKey="m" axisLine={false} tickLine={false} tick={{ fontSize: 13, fill: "var(--ink)" }} />
                   <YAxis ticks={[0, 100, 200, 300, 400, 500, 600]} domain={[0, 600]} axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: "var(--ink)" }} tickFormatter={(v) => (v ? `${v} B` : "0")} />
                   <Tooltip content={<ChartTip />} cursor={{ stroke: "var(--muted-foreground)", strokeDasharray: "4 4" }} defaultIndex={4} position={{ y: 0 }} offset={20} allowEscapeViewBox={{ x: true }} />
-                  <Bar dataKey="k" fill="var(--ok)" fillOpacity={0.35} barSize={58} radius={[3, 3, 0, 0]} />
-                  <Line dataKey="c" stroke="var(--warn)" strokeWidth={2.5} dot={{ r: 4, fill: "var(--warn)" }} activeDot={{ r: 5 }} />
-                  <Line dataKey="s" stroke="var(--brand)" strokeWidth={2.5} dot={{ r: 4, fill: "var(--brand)" }} activeDot={{ r: 6 }} />
+                  <Bar dataKey="k" fill="var(--ok)" fillOpacity={0.4} barSize={56} isAnimationActive={false} radius={[3, 3, 0, 0]} />
+                  <Line isAnimationActive={false} dataKey="c" stroke="var(--warn)" strokeWidth={2.5} dot={{ r: 4, fill: "var(--warn)" }} activeDot={{ r: 5 }} />
+                  <Line isAnimationActive={false} dataKey="s" stroke="var(--brand)" strokeWidth={2.5} dot={{ r: 4, fill: "var(--brand)" }} activeDot={{ r: 6 }} />
                 </ComposedChart>
               </ResponsiveContainer>
             </div>
           </Card>
 
           <Card className="p-5">
-            <h2 className="flex items-center gap-2 text-lg font-bold tracking-tight">Dikkat Gerektiren Başlıklar <Info className="h-4 w-4" /></h2>
-            <div className="mt-3 space-y-2">
+            <h2 className="flex items-center gap-2 text-[18px] font-bold ">Dikkat Gerektiren Başlıklar <Info className="h-4 w-4" /></h2>
+            <div className="mt-3 space-y-1.5">
               {[
                 { bg: "bg-bad-soft border-bad/20", ic: <ArrowUp className="h-7 w-7 text-bad" />, t: "Maliyeti Yükselen Ürünler", d: "Son 30 günde maliyeti artan 18 ürün var.", cc: "text-bad" },
                 { bg: "bg-amber-soft border-amber/30", ic: <Minus className="h-8 w-8 text-amber" />, t: "Düşük Marjlı Satışlar", d: "Brüt kâr marjı %10'un altında olan 12 ürün.", cc: "text-warn" },
                 { bg: "bg-brand-soft border-brand/20", ic: <Package className="h-7 w-7 text-brand" />, t: "Maliyet Verisi Eksik Ürünler", d: "Analize dâhil edilemeyen 7 ürün.", cc: "text-brand" },
               ].map((a) => (
-                <button key={a.t} className={`flex h-[56px] w-full items-center gap-4 rounded-lg border px-4 text-left hover:brightness-[0.98] ${a.bg}`}>
-                  <span className="w-8">{a.ic}</span>
-                  <span className="flex-1"><span className="block text-[15px] font-semibold">{a.t}</span><span className="block text-xs text-ink/80">{a.d}</span></span>
+                <Button variant="ghost" key={a.t} className={`flex h-[56px] w-full items-center gap-3 rounded-lg border px-3 text-left hover:brightness-[0.98] ${a.bg}`}>
+                  <span className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full ${a.bg.split(" ")[0]}`}>{a.ic}</span>
+                  <span className="flex-1"><span className="block text-[15px] font-bold">{a.t}</span><span className="block text-xs text-muted-foreground">{a.d}</span></span>
                   <ChevronRight className={`h-5 w-5 ${a.cc}`} />
-                </button>
+                </Button>
               ))}
             </div>
           </Card>
         </div>
 
         {/* Tables */}
-        <div className="mt-4 grid grid-cols-2 gap-4">
-          <Card className="p-4">
+        <div className="dashboard-tables mt-4 grid grid-cols-2 gap-4">
+          <Card className="px-4 py-3">
             <div className="flex items-center justify-between">
-              <h2 className="flex items-center gap-2 text-lg font-bold tracking-tight">En Çok Kazandıran Ürünler (Brüt Kâr) <Info className="h-4 w-4" /></h2>
+              <h2 className="flex items-center gap-2 text-[18px] font-bold ">En Çok Kazandıran Ürünler (Brüt Kâr) <Info className="h-4 w-4" /></h2>
               <a className="cursor-pointer text-sm font-medium text-brand">Tümünü Gör</a>
             </div>
-            <table className="mt-3 w-full text-sm">
+            <table className="dashboard-table mt-2 w-full text-[13px]">
               <thead><tr className="border-b text-xs font-medium"><th className="pb-2 text-left font-medium">Ürün</th><th className="text-right font-medium">Net Satış (₺)</th><th className="text-right font-medium">Satış Maliyeti (₺)</th><th className="text-right font-medium">Brüt Kâr (₺)</th><th className="pr-6 text-right font-medium">Marj</th></tr></thead>
               <tbody>
                 {[
@@ -226,7 +227,7 @@ function Index() {
                   [alci, "Alçı Plaka 12,5 mm", 96000, 68000, 28000, "%29,2"],
                 ].map(([I, n, a, b, c, m]: any) => (
                   <tr key={n} className="border-b last:border-0 hover:bg-muted/50">
-                    <td className="py-2"><span className="flex items-center gap-3"><img src={I} alt={n} className="h-8 w-10 object-contain" />{n}</span></td>
+                    <td className="py-1"><span className="flex items-center gap-2"><img src={I} alt={n} className="h-8 w-10 object-contain" />{n}</span></td>
                     <td className="text-right">{tl(a)}</td><td className="text-right">{tl(b)}</td><td className="text-right">{tl(c)}</td>
                     <td className="text-right"><span className="inline-block rounded-md bg-ok-ring px-4 py-1 font-bold text-ok-ink">{m}</span></td>
                   </tr>
@@ -235,12 +236,12 @@ function Index() {
             </table>
           </Card>
 
-          <Card className="p-4">
+          <Card className="px-4 py-3">
             <div className="flex items-center justify-between">
-              <h2 className="flex items-center gap-2 text-lg font-bold tracking-tight">En Çok Maliyeti Artan Ürünler <Info className="h-4 w-4" /></h2>
+              <h2 className="flex items-center gap-2 text-[18px] font-bold ">En Çok Maliyeti Artan Ürünler <Info className="h-4 w-4" /></h2>
               <a className="cursor-pointer text-sm font-medium text-brand">Tümünü Gör</a>
             </div>
-            <table className="mt-3 w-full text-sm">
+            <table className="dashboard-table mt-2 w-full text-[13px]">
               <thead><tr className="border-b text-xs"><th className="pb-2 text-left font-medium">Ürün</th><th className="text-right font-medium">Önceki Maliyet</th><th className="text-right font-medium">Güncel Maliyet</th><th className="text-center font-medium">Değişim</th><th className="font-medium">Etki</th></tr></thead>
               <tbody>
                 {[
@@ -249,10 +250,10 @@ function Index() {
                   [tugla, "Tuğla 19'luk", "₺ 8,90", "₺ 9,60", "+%7,9"],
                 ].map(([I, n, a, b, c]: any) => (
                   <tr key={n} className="border-b last:border-0 hover:bg-muted/50">
-                    <td className="py-2"><span className="flex items-center gap-3"><img src={I} alt={n} className="h-8 w-10 object-contain" />{n}</span></td>
+                    <td className="py-1"><span className="flex items-center gap-2"><img src={I} alt={n} className="h-8 w-10 object-contain" />{n}</span></td>
                     <td className="text-right">{a}</td><td className="text-right">{b}</td>
                     <td className="text-center"><span className="inline-block rounded-md bg-bad-soft px-4 py-1 font-bold text-bad">{c}</span></td>
-                    <td><BarChart3 className="mx-auto h-5 w-5 text-brand" /></td>
+                    <td><span className="mx-auto flex h-5 w-5 items-end justify-center gap-0.5 text-brand"><span className="h-1.5 w-1 bg-current" /><span className="h-2.5 w-1 bg-current" /><span className="h-4 w-1 bg-current" /></span></td>
                   </tr>
                 ))}
               </tbody>
@@ -261,23 +262,23 @@ function Index() {
         </div>
 
         {/* Quick calc */}
-        <Card className="mt-4 flex items-center gap-6 p-4">
+        <Card className="dashboard-calculator mt-4 bg-brand-soft p-3.5">
           <div className="flex h-12 w-12 items-center justify-center rounded-full bg-brand-soft"><Target className="h-7 w-7 text-brand" /></div>
-          <div className="w-[400px]"><div className="text-[17px] font-bold">Hızlı Hesaplama: Hedef Satış Fiyatı</div><div className="text-xs">Bir ürün için hedef kâr marjına göre önerilen satış fiyatını hesaplayın.</div></div>
-          <label className="text-xs">Ürün Seçin
+          <div className="min-w-0"><div className="text-[17px] font-bold leading-tight">Hızlı Hesaplama: Hedef Satış Fiyatı</div><div className="text-xs">Bir ürün için hedef kâr marjına göre önerilen satış fiyatını hesaplayın.</div></div>
+          <label className="text-xs font-medium text-muted-foreground">Ürün Seçin
             <select className="mt-1 block h-10 w-[188px] rounded-lg border bg-card px-3 text-sm"><option>Çimento 50 kg</option><option>Bims 20'lik</option><option>Demir Ø12</option></select>
           </label>
-          <label className="text-xs">Birim Maliyet (₺)
+          <label className="text-xs font-medium text-muted-foreground">Birim Maliyet (₺)
             <input value={cost} onChange={(e) => setCost(e.target.value)} className="mt-1 block h-10 w-[142px] rounded-lg border bg-card px-3 text-sm" />
           </label>
-          <label className="text-xs">Hedef Marj (%)
+          <label className="text-xs font-medium text-muted-foreground">Hedef Marj (%)
             <span className="mt-1 flex h-10 w-[128px] items-center rounded-lg border bg-card px-3 text-sm">%&nbsp;<input value={margin} onChange={(e) => setMargin(e.target.value)} className="w-full outline-none" /></span>
           </label>
           <ArrowRight className="mt-4 h-5 w-5 text-brand" />
-          <div className="text-sm font-semibold text-ok">Önerilen Satış Fiyatı
+          <div className="text-xs font-bold text-ok-ink">Önerilen Satış Fiyatı
             <div className="mt-1 flex h-10 w-[160px] items-center rounded-lg bg-ok-soft px-3 text-2xl font-bold">₺ {price.toLocaleString("tr-TR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</div>
           </div>
-          <button onClick={calc} className="ml-auto flex h-10 w-[146px] items-center justify-center gap-2 rounded-lg bg-brand text-sm font-semibold text-primary-foreground hover:opacity-90"><Calculator className="h-4 w-4" />Hesapla</button>
+          <Button variant="ghost" onClick={calc} className="mt-4 flex h-10 w-full items-center justify-center gap-2 rounded-lg bg-brand text-sm font-semibold text-primary-foreground hover:opacity-90"><Calculator className="h-4 w-4" />Hesapla</Button>
         </Card>
       </main>
     </div>
